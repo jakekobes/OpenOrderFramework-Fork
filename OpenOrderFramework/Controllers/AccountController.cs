@@ -78,13 +78,13 @@ namespace OpenOrderFramework.Controllers
             var result = await SignInHelper.PasswordSignIn(model.GuestAcct, model.GuestPassword, false, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:
+                case Models.SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
+                case Models.SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresTwoFactorAuthentication:
+                case Models.SignInStatus.RequiresTwoFactorAuthentication:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
-                case SignInStatus.Failure:
+                case Models.SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
@@ -110,13 +110,13 @@ namespace OpenOrderFramework.Controllers
             var result = await SignInHelper.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:
+                case Models.SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
+                case Models.SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresTwoFactorAuthentication:
+                case Models.SignInStatus.RequiresTwoFactorAuthentication:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
-                case SignInStatus.Failure:
+                case Models.SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
@@ -157,11 +157,11 @@ namespace OpenOrderFramework.Controllers
             var result = await SignInHelper.TwoFactorSignIn(model.Provider, model.Code, isPersistent: false, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
-                case SignInStatus.Success:
+                case Models.SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
+                case Models.SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.Failure:
+                case Models.SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
@@ -366,13 +366,13 @@ namespace OpenOrderFramework.Controllers
             var result = await SignInHelper.ExternalSignIn(loginInfo, isPersistent: false);
             switch (result)
             {
-                case SignInStatus.Success:
+                case Models.SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
+                case Models.SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresTwoFactorAuthentication:
+                case Models.SignInStatus.RequiresTwoFactorAuthentication:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
-                case SignInStatus.Failure:
+                case Models.SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;

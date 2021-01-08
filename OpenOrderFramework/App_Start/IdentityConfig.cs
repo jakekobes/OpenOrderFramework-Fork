@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using RestSharp;
 using OpenOrderFramework.Configuration;
+using RestSharp.Authenticators;
 
 namespace OpenOrderFramework.Models
 {
@@ -155,7 +156,7 @@ namespace OpenOrderFramework.Models
         {
             RestClient client = new RestClient();
             AppConfigurations appConfig = new AppConfigurations();
-            client.BaseUrl = "https://api.mailgun.net/v2";
+            client.BaseUrl = new Uri("https://api.mailgun.net/v2");
             client.Authenticator =
                    new HttpBasicAuthenticator("api",
                                               appConfig.EmailApiKey);

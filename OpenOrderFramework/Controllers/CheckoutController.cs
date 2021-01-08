@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using OpenOrderFramework.Configuration;
 using OpenOrderFramework.Models;
 using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +124,7 @@ namespace OpenOrderFramework.Controllers
             RestClient client = new RestClient();
             //fix this we have this up top too
             AppConfigurations appConfig = new AppConfigurations();
-            client.BaseUrl = "https://api.mailgun.net/v2";
+            client.BaseUrl = new Uri("https://api.mailgun.net/v2");
             client.Authenticator =
                    new HttpBasicAuthenticator("api",
                                               appConfig.EmailApiKey);
