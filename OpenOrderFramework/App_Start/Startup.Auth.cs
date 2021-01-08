@@ -55,9 +55,9 @@ namespace OpenOrderFramework {
 
             //app.UseGoogleAuthentication();
             //Not working currently
-            GoogleAuthenticationOptions options = new GoogleAuthenticationOptions();
-            options.AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active;
-            app.UseGoogleAuthentication();
+            //GoogleAuthenticationOptions options = new GoogleAuthenticationOptions();
+            //options.AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active;
+            //app.UseGoogleAuthentication();
         }
     }
 }
